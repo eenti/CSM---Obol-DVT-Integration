@@ -199,3 +199,18 @@ Once every participating operator is ready, the next step is the distributed key
 - If you are one of the cluster **OPERATORS**, continue to the next step.
 
 You'll receive the `cluster-definition.json` file created by the leader/creator. You should save it in the `.charon/` folder that was created initially. (Alternatively, you can use the `--definition-file` flag to override the default expected location for this file.)
+
+## Step 3: Run the Distributed Key Generation (DKG) ceremony
+
+> 💡 **Tip:**
+> For the DKG to complete, all operators need to be running the command simultaneously. It helps if operators can agree on a certain time or schedule a video call for them to all run the command together.
+
+Once the creator gives you the cluster-definition.json file and you place it in a .charon subdirectory, run:
+```bash
+docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 dkg --publish
+```
+and the DKG process should begin.
+
+> ⚠️ **Warning:**
+> Please make sure to create a backup of your .charon/ folder. If you lose your private keys you won't be able to start the DV cluster successfully and may risk your validator deposit becoming unrecoverable. Ensure every operator has their .charon folder securely and privately backed up before activating any validators.
+
