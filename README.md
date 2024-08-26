@@ -148,10 +148,8 @@ docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 create enr
 ```
 You should expect to see a console output like this:
 
-```
-Created ENR private key: .charon/charon-enr-private-key
+> >Created ENR private key: .charon/charon-enr-private-key
 enr:-JG4QGQpV4qYe32QFUAbY1UyGNtNcrVMip83cvJRhw1brMslPeyELIz3q6dsZ7GblVaCjL_8FKQhF6Syg-O_kIWztimGAYHY5EvPgmlkgnY0gmlwhH8AAAGJc2VjcDI1NmsxoQKzMe_GFPpSqtnYl-mJr8uZAUtmkqccsAx7ojGmFy-FY4N0Y3CCDhqDdWRwgg4u
-```
 
 
 > ⚠️ **Warning:**
