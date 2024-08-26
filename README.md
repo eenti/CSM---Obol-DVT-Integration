@@ -153,11 +153,9 @@ enr:-JG4QGQpV4qYe32QFUAbY1UyGNtNcrVMip83cvJRhw1brMslPeyELIz3q6dsZ7GblVaCjL_8FKQh
 
 
 > ⚠️ **Warning:**
->
 >Please make sure to create a backup of the private key at `.charon/charon-enr-private-key`. Be careful not to commit it to git! **If you lose this file you won't be able to take part in the DKG ceremony nor start the DV cluster successfully.**
->
+
 > 💡 **Tip:**
->
 >If instead of being shown your `enr` you see an error saying `permission denied`, then you may need to [update your docker permissions](../faq/errors.mdx#docker-permission-denied-error) to allow the command to run successfully.
 
 ## Step 2: Create a Cluster Using CLI
@@ -211,6 +209,22 @@ docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 dkg --publish
 ```
 and the DKG process should begin.
 
+### Backup Validator Keys
+
+Make sure to take a backup of your validator_keys!!! Copy them on the same machine but also consider a offline backup
+
+```bash
+cd
+mkdir .charon-backups
+cd charon-distributed-validator-node
+cp -r $HOME/charon-distributed-validator-node/.charon $HOME/charon-distributed-validator-node/.charon-backups
+```
+
 > ⚠️ **Warning:**
 > Please make sure to create a backup of your .charon/ folder. If you lose your private keys you won't be able to start the DV cluster successfully and may risk your validator deposit becoming unrecoverable. Ensure every operator has their .charon folder securely and privately backed up before activating any validators.
+>
+> ❗info
+> The cluster-lock and deposit-data files are identical for each operator, if lost, they can be copied from one operator to another.
+
+Now that the DKG has been completed, all operators can start their nodes.
 
