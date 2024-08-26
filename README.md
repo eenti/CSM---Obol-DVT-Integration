@@ -160,9 +160,6 @@ Please make sure to create a backup of the private key at `.charon/charon-enr-pr
 If instead of being shown your `enr` you see an error saying `permission denied`, then you may need to [update your docker permissions](../faq/errors.mdx#docker-permission-denied-error) to allow the command to run successfully.
 ```
 
-Here’s a GitHub Markdown-formatted version of the guide that you can copy and paste into your repository:
-
-```markdown
 ## Step 2: Create a Cluster Using CLI
 
 ### The Following Should Be Performed by the LEADER
@@ -178,7 +175,7 @@ The leader or creator of the cluster will prepare the `cluster-definition.json` 
 Populate the `charon create dkg` command with the appropriate flags, including the `name`, `num-validators`, `fee-recipient-addresses`, `withdrawal-addresses`, and `operator-enrs` of all the operators participating in the cluster.
 
 Run the `charon create dkg` command that generates the DKG `cluster-definition.json` file. It is important to note to change the name and number of validators you wish to run together, and when CSM is on mainnet, be sure to change the network flag as well. The fee recipient and withdrawal address should stay as they are. Make sure to read more about this [here](https://operatorportal.lido.fi/modules/community-staking-module).
-
+```markdown
 ```bash
 docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 create dkg \
   --name="Stakecat Obol Squad 69" \
