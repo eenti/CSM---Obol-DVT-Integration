@@ -190,6 +190,8 @@ docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 create dkg \
 This command should output a file at `.charon/cluster-definition.json`. This file needs to be shared with the other operators in the cluster.
 
 > **Note:** The `.charon` folder is hidden by default. To view it, run `ls -al .charon` in your terminal. If you are on macOS, press `Cmd + Shift + .` to view all hidden files in the Finder application.
+>
+> ⚠️ Note: The .charon folder is hidden by default. To view it, run ls -al .charon in your terminal. If you are on macOS, press Cmd + Shift + . to view all hidden files in the Finder application.
 
 Once every participating operator is ready, the next step is the distributed key generation amongst the operators.
 
