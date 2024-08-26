@@ -128,22 +128,24 @@ For a local setup, you may need to port forward these ports for your device's lo
 
 This guide now includes instructions for setting up firewall rules and port forwarding, ensuring your node is properly configured for network operations. You can copy and paste this directly into your GitHub repository for clear and comprehensive documentation. Let me know if there's anything else you'd like to add or modify!
 
-```markdown
 ## Step 1: Get your ENR
+
+### CLI
 
 In order to prepare for a distributed key generation ceremony, you need to create an ENR for your Charon client. This ENR is a public/private key pair that allows the other Charon clients in the DKG to identify and connect to your node. If you are creating a cluster but not taking part as a node operator in it, you can skip this step.
 
-```shell
 # Clone the repo
+```shell
 git clone https://github.com/ObolNetwork/charon-distributed-validator-node.git
-
+```
 # Change directory
+```shell
 cd charon-distributed-validator-node/
-
+```
 # Use docker to create an ENR. Backup the file `.charon/charon-enr-private-key`.
+```shell
 docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 create enr
 ```
-
 You should expect to see a console output like this:
 
 ```
