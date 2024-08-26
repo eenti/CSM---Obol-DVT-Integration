@@ -124,9 +124,9 @@ sudo ufw status
 
 For a local setup, you may need to port forward these ports for your device's local IP. The exact process depends on your internet provider and router model. Typically, this can be done by logging into your router's settings.
 
+
 ---
 
-This guide now includes instructions for setting up firewall rules and port forwarding, ensuring your node is properly configured for network operations. You can copy and paste this directly into your GitHub repository for clear and comprehensive documentation. Let me know if there's anything else you'd like to add or modify!
 
 # Step 1: Get your ENR
 
