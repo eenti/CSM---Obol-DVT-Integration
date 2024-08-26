@@ -127,8 +127,8 @@ For a local setup, you may need to port forward these ports for your device's lo
 
 ---
 
-
-# Step 1: Get your ENR
+# Obol - Create a DV with group
+## Step 1: Get your ENR
 
 ### CLI
 
@@ -164,7 +164,7 @@ enr:-JG4QGQpV4qYe32QFUAbY1UyGNtNcrVMip83cvJRhw1brMslPeyELIz3q6dsZ7GblVaCjL_8FKQh
 
 ### The Following Should Be Performed by the LEADER
 
-#### Collect Addresses, Configure the Cluster, Share the Invitation
+Collect Addresses, Configure the Cluster, Share the Invitation
 
 Before starting the cluster creation process, you will need to collect an Ethereum address for each operator in the cluster. They will need to be able to sign messages through MetaMask with this address. (Broader wallet support will be added in the future.) With these addresses in hand, go through the cluster creation flow.
 
