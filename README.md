@@ -177,7 +177,7 @@ Run the `charon create dkg` command that generates the DKG `cluster-definition.j
 
 **Docker Command to Create DKG Cluster Definition File:**
 
-\```bash
+```bash
 docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 create dkg \
   --name="Stakecat Obol Squad 69" \
   --network="holesky" \
@@ -185,7 +185,7 @@ docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 create dkg \
   --fee-recipient-addresses="0xE73a3602b99f1f913e72F8bdcBC235e206794Ac8" \
   --withdrawal-addresses="0xF0179dEC45a37423EAD4FaD5fCb136197872EAd9" \
   --operator-enrs="enr:-HW4QOtPBUWiFnLF1hwfxffqK-z3vmjqr8T0CwG5qk87nDFXSpLZhCZYW7jmubmlP2Typ7bgWOLvo_ABU6HDbMfW2bqAgmlkgnY0iXNlY3AyNTZrMaECWbZ5cZrmy-tK5h2r3C81PYCL5fIDf31tXzoarsfye_g,enr:-HW4QCBfh8UjiE81YcMk08cmlVdzcTwjKYyqnd8aEH8Bdco_JLRc9TJ0ygQBXKOXxw2ZRkT_Szt9aPz8VmPsIdmVrl2AgmlkgnY0iXNlY3AyNTZrMaED5XC-fmRe5k1HgyGttcTY4o7lJdHDrrheS3WsFwuLI-o,enr:-HW4QHyV1ce3zU6VIb7ETaPbob8hgRw8MIOnLf1Jryduz-psNUYeyYgP7PLKROIrI9CEODzSrIxB_ZzHYju0cBi-OdmAgmlkgnY0iXNlY3AyNTZrMaECKHwo9TrxI1-rSOxv7zq7eKGfg-ZSSgDOHjtvFvlf0dc,enr:-HW4QK1Xa3cfimvCftOAuhWPP8oGfj0WGDXbNG7diX-awInDPhoPN6D-nNzzaUzWlHXr1O6Net7gdEWNHBUR9lpMD0iAgmlkgnY0iXNlY3AyNTZrMaECz6weeL4PxNQimYkEyNYqu2RTbEGc8JteY3QrugGMV5A"
-\```
+```
 
 This command should output a file at `.charon/cluster-definition.json`. This file needs to be shared with the other operators in the cluster.
 
