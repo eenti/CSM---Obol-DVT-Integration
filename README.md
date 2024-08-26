@@ -160,3 +160,47 @@ Please make sure to create a backup of the private key at `.charon/charon-enr-pr
 If instead of being shown your `enr` you see an error saying `permission denied`, then you may need to [update your docker permissions](../faq/errors.mdx#docker-permission-denied-error) to allow the command to run successfully.
 ```
 
+Here’s a GitHub Markdown-formatted version of the guide that you can copy and paste into your repository:
+
+```markdown
+## Step 2: Create a Cluster Using CLI
+
+### The Following Should Be Performed by the LEADER
+
+#### Collect Addresses, Configure the Cluster, Share the Invitation
+
+Before starting the cluster creation process, you will need to collect an Ethereum address for each operator in the cluster. They will need to be able to sign messages through MetaMask with this address. (Broader wallet support will be added in the future.) With these addresses in hand, go through the cluster creation flow.
+
+You will use the CLI to create the cluster definition file, which you will distribute manually to the operators.
+
+The leader or creator of the cluster will prepare the `cluster-definition.json` file for the Distributed Key Generation (DKG) ceremony using the `charon create dkg` command.
+
+Populate the `charon create dkg` command with the appropriate flags, including the `name`, `num-validators`, `fee-recipient-addresses`, `withdrawal-addresses`, and `operator-enrs` of all the operators participating in the cluster.
+
+Run the `charon create dkg` command that generates the DKG `cluster-definition.json` file. It is important to note to change the name and number of validators you wish to run together, and when CSM is on mainnet, be sure to change the network flag as well. The fee recipient and withdrawal address should stay as they are. Make sure to read more about this [here](https://operatorportal.lido.fi/modules/community-staking-module).
+
+```bash
+docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 create dkg \
+  --name="Stakecat Obol Squad 69" \
+  --network="holesky" \
+  --num-validators=1 \
+  --fee-recipient-addresses="0xE73a3602b99f1f913e72F8bdcBC235e206794Ac8" \
+  --withdrawal-addresses="0xF0179dEC45a37423EAD4FaD5fCb136197872EAd9" \
+  --operator-enrs="enr:-HW4QOtPBUWiFnLF1hwfxffqK-z3vmjqr8T0CwG5qk87nDFXSpLZhCZYW7jmubmlP2Typ7bgWOLvo_ABU6HDbMfW2bqAgmlkgnY0iXNlY3AyNTZrMaECWbZ5cZrmy-tK5h2r3C81PYCL5fIDf31tXzoarsfye_g,enr:-HW4QCBfh8UjiE81YcMk08cmlVdzcTwjKYyqnd8aEH8Bdco_JLRc9TJ0ygQBXKOXxw2ZRkT_Szt9aPz8VmPsIdmVrl2AgmlkgnY0iXNlY3AyNTZrMaED5XC-fmRe5k1HgyGttcTY4o7lJdHDrrheS3WsFwuLI-o,enr:-HW4QHyV1ce3zU6VIb7ETaPbob8hgRw8MIOnLf1Jryduz-psNUYeyYgP7PLKROIrI9CEODzSrIxB_ZzHYju0cBi-OdmAgmlkgnY0iXNlY3AyNTZrMaECKHwo9TrxI1-rSOxv7zq7eKGfg-ZSSgDOHjtvFvlf0dc,enr:-HW4QK1Xa3cfimvCftOAuhWPP8oGfj0WGDXbNG7diX-awInDPhoPN6D-nNzzaUzWlHXr1O6Net7gdEWNHBUR9lpMD0iAgmlkgnY0iXNlY3AyNTZrMaECz6weeL4PxNQimYkEyNYqu2RTbEGc8JteY3QrugGMV5A"
+```
+
+This command should output a file at `.charon/cluster-definition.json`. This file needs to be shared with the other operators in the cluster.
+
+> **Note:** The `.charon` folder is hidden by default. To view it, run `ls -al .charon` in your terminal. If you are on macOS, press `Cmd + Shift + .` to view all hidden files in the Finder application.
+
+Once every participating operator is ready, the next step is the distributed key generation amongst the operators.
+
+- If you are not planning on operating a node and were only configuring the cluster for the operators, your journey ends here. Well done!
+
+- If you are one of the cluster **OPERATORS**, continue to the next step.
+
+You'll receive the `cluster-definition.json` file created by the leader/creator. You should save it in the `.charon/` folder that was created initially. (Alternatively, you can use the `--definition-file` flag to override the default expected location for this file.)
+```
+
+This Markdown version is formatted for clarity and easy readability on GitHub, with all necessary commands and instructions included.
+
