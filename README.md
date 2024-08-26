@@ -228,3 +228,12 @@ cp -r $HOME/charon-distributed-validator-node/.charon $HOME/charon-distributed-v
 
 Now that the DKG has been completed, all operators can start their nodes.
 
+## Step 4: Start your Distributed Validator Node
+
+To run our validator node, we must first run and fully sync and Execution layer client and consensus layer client. By default Charon is set to sync execution layer client (geth) and a consensus layer client (lighthouse).
+
+from the working folder charon-distributed-validator-cluster
+```bash
+docker compose up -d
+```
+
