@@ -373,7 +373,7 @@ MEVBOOST_RELAYS=https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678d
 # Loki host exposed port
 #MONITORING_PORT_LOKI=
 ```
-Use crtl+o to save then ctrl+x to exit.
+> Use crtl+o to save the .env then ctrl+x to exit the .env file.
 
 To run our validator node, we must first run and fully sync and Execution layer client and consensus layer client. By default Charon is set to sync execution layer client (geth) and a consensus layer client (lighthouse).
 
