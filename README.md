@@ -230,6 +230,17 @@ Now that the DKG has been completed, all operators can start their nodes.
 
 ## Step 4: Start your Distributed Validator Node
 
+> ❗info
+> Currently, the CDVN repo configures a node for the Holesky testnet. It is possible to choose a different network (another testnet, or mainnet) by overriding the .env file. From within the charon-distributed-validator-node directory, this will be important when CSM goes to mainnet:
+
+>.env.sample is a sample environment file that allows overriding default configuration defined in docker-compose.yml. Uncomment and set any variable to override its value.
+
+Setup the desired inputs for the DV, including the network you wish to operate on. Check the Charon CLI reference for additional optional flags to set.
+
+# Copy ".env.sample", renaming it ".env"
+cp .env.sample .env
+The .env
+
 To run our validator node, we must first run and fully sync and Execution layer client and consensus layer client. By default Charon is set to sync execution layer client (geth) and a consensus layer client (lighthouse).
 
 from the working folder charon-distributed-validator-cluster
@@ -253,9 +264,6 @@ The next step should be taken by the cluster leader.
 
 Now you just need to wait for the Lido CSM to deposit your validator keys (using your deposit data file). Give some time for the keys to be deposited, and then you will be able to click the Beaconchain link to view your validator.
 
-> ❗ **Info:**  
-> The `cluster-lock` and `deposit-data` files are identical for each operator. If lost, they can be copied from one operator to another.
-
-Congratulations, you are now running a CSM Obol DVT Validator.
+🎉Congratulations, you are now running a CSM Obol DVT Validator.🎉
 
 
