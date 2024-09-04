@@ -9,7 +9,7 @@ Here's a version of the integration guide formatted for easy copying and pasting
 
 This guide will walk you through the process of integrating Obol Distributed Validator Technology (DVT) with the Lido Collaborative Staking Module (CSM). Obol DVT provides a decentralized and secure infrastructure for Ethereum staking, enhancing validator performance and security. Using this DVT can increase your security, and if you want to run it as a cluster, it will further reduce your 2 ETH bond.
 
-In this guide, we will run through Obol integration in a cluster of 4 nodes, as we did for operator 69, the first CSM operator to use Obol DVT Technology. Obol is also releasing a 1% retroactive consensus fund, which can also be contributed to through CSM using a custom rewards address with a splitter contract. Instructions on how to contribute to this will follow.
+In this guide, we will run through Obol integration in a cluster of 4 nodes, as we did for operator 69, the first CSM operator to use Obol DVT Technology. For the following guide you will need to gather a group you trust to operate with. It is important to note this guide does not outline the use of SAFE multisig wallet and for extra security and practise you should look to use one. 
 
 ## Running a DV as a Group on CSM
 
@@ -236,4 +236,26 @@ from the working folder charon-distributed-validator-cluster
 ```bash
 docker compose up -d
 ```
+## Step 5: Upload Deposit Data to CSM
+
+The next step should be taken by the cluster leader.
+
+1. Go to [https://csm.testnet.fi/](https://csm.testnet.fi/)
+2. Select **Become a Node Operator** and then **Create a Node Operator**.
+3. On the CSM Widget, upload your deposit data file and select the corresponding bond type (ETH, stETH, wstETH), and provide the desired bond amount.
+4. You will then need to save your `deposit.json` to your local machine to drag and drop, or alternatively, use the following command and copy and paste the output into the ‘Upload Deposit Data’ box on the CSM front end:
+
+    ```bash
+    cat ~/charon-distributed-validator-node/.charon/deposit_data.json
+    ```
+
+5. Finally, select **Create Node Operator**, sign the transaction with your connected wallet, and you are all set.
+
+Now you just need to wait for the Lido CSM to deposit your validator keys (using your deposit data file). Give some time for the keys to be deposited, and then you will be able to click the Beaconchain link to view your validator.
+
+> ❗ **Info:**  
+> The `cluster-lock` and `deposit-data` files are identical for each operator. If lost, they can be copied from one operator to another.
+
+Congratulations, you are now running a CSM Obol DVT Validator.
+
 
