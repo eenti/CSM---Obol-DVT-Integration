@@ -7,9 +7,13 @@ Here's a version of the integration guide formatted for easy copying and pasting
 
 # Lido CSM – Obol Integration Guide
 
-This guide will walk you through the process of integrating Obol Distributed Validator Technology (DVT) with the Lido Collaborative Staking Module (CSM). Obol DVT provides a decentralized and secure infrastructure for Ethereum staking, enhancing validator performance and security. Using this DVT can increase your security, and if you want to run it as a cluster, it will further reduce your 2 ETH bond.
+This guide will walk you through the process of integrating Obol Distributed Validator Technology (DVT) with the Lido Collaborative Staking Module (CSM). Obol DVT provides a decentralized and secure infrastructure for Ethereum staking, enhancing validator performance and security. Using this DVT can increase your security, and if you want to run it as a cluster, it will further reduce your 2 ETH bond. The major benifits of squad staking on CSM include: 
 
-In this guide, we will run through Obol integration in a cluster of 4 nodes, as we did for operator 69, the first CSM operator to use Obol DVT Technology. For the following guide you will need to gather a group you trust to operate with. It is important to note this guide does not outline the use of SAFE multisig wallet and for extra security and practise you should look to use one. 
+- Accessability
+- Resilliency
+- Rewards 
+
+In this guide, we will run through Obol integration in a cluster of 4 operators, as we did for operator 69, the first CSM operator to use Obol DVT Technology. For the following guide you will need to gather a group you trust to operate with. It is important to note this guide does not outline the use of SAFE multisig wallet and for extra security and practise you should look to use one. 
 
 ## Running a DV as a Group on CSM
 
