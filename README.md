@@ -1,4 +1,4 @@
-# CSM - Obol DVT Integration
+# Lido CSM - Obol DVT Integration
 A walkthrough guide on how to integrate obol DVT into Lido's community staking module
 
 Here's a version of the integration guide formatted for easy copying and pasting into a GitHub repository:
