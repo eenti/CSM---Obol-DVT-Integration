@@ -232,14 +232,149 @@ Now that the DKG has been completed, all operators can start their nodes.
 
 > ❗info
 > Currently, the CDVN repo configures a node for the Holesky testnet. It is possible to choose a different network (another testnet, or mainnet) by overriding the .env file. From within the charon-distributed-validator-node directory, this will be important when CSM goes to mainnet:
-
 >.env.sample is a sample environment file that allows overriding default configuration defined in docker-compose.yml. Uncomment and set any variable to override its value.
+>Setup the desired inputs for the DV, including the network you wish to operate on. Check the Charon CLI reference for additional optional flags to set.
 
-Setup the desired inputs for the DV, including the network you wish to operate on. Check the Charon CLI reference for additional optional flags to set.
+For the sake and ease of this guide copy create a new .env and copy and paste the below into it. To do so: 
 
-# Copy ".env.sample", renaming it ".env"
-cp .env.sample .env
-The .env
+Make sure you are in your charon-distributed-validator-node directory
+
+```bash
+cd
+cd charon-distributed-validator-node
+```
+
+```bash
+nano .env
+```
+
+```bash
+# This is a sample environment file that allows overriding default configuration defined
+# in docker-compose.yml. Rename this file to `.env` and then uncomment and set any variable below.
+
+# Overrides network for all the relevant services.
+NETWORK=holesky
+
+# Enables builder api for lodestar VC and charon services.
+BUILDER_API_ENABLED=true
+
+######### Nethermind Config #########
+
+# Nethermind docker container image version, e.g. `latest` or `1.25.3`.
+# See available tags https://hub.docker.com/r/nethermind/nethermind/tags
+#NETHERMIND_VERSION=
+
+# Nethermind host exposed ports
+#NETHERMIND_PORT_P2P=
+#NETHERMIND_PORT_HTTP=
+#NETHERMIND_PORT_ENGINE=
+
+######### Lighthouse Config #########
+
+# Lighthouse beacon node docker container image version, e.g. `latest` or `v4.6.0`.
+# See available tags https://hub.docker.com/r/sigp/lighthouse/tags.
+#LIGHTHOUSE_VERSION=
+
+# Lighthouse beacon node host exposed ports
+#LIGHTHOUSE_PORT_P2P=
+
+# Checkpoint sync url used by lighthouse to fast sync.
+# See available options https://eth-clients.github.io/checkpoint-sync-endpoints/.
+#LIGHTHOUSE_CHECKPOINT_SYNC_URL=
+
+######### Lodestar Config #########
+
+# Lodestar validator client docker container image version, e.g. `latest` or `v1.15.1`.
+# See available tags https://hub.docker.com/r/chainsafe/lodestar/tags
+#LODESTAR_VERSION=
+
+# Override prometheus metrics port for lodestar validator client.
+#LODESTAR_PORT_METRICS=
+
+######### Charon Config #########
+
+# Charon docker container image version, e.g. `latest` or `v1.0.0`.
+# See available tags https://hub.docker.com/r/obolnetwork/charon/tags.
+#CHARON_VERSION=
+
+# Define custom relays. One or more ENRs or an http URL that return an ENR. Use a comma separated list excluding spaces.
+#CHARON_P2P_RELAYS=
+
+# Connect to one or more external beacon nodes. Use a comma separated list excluding spaces.
+#CHARON_BEACON_NODE_ENDPOINTS=
+
+# Override the charon logging level; debug, info, warning, error.
+#CHARON_LOG_LEVEL=
+
+# Override the charon logging format; console, logfmt, json. Grafana panels require logfmt.
+#CHARON_LOG_FORMAT=
+
+# Advertise a custom external DNS hostname or IP address for libp2p peer discovery.
+#CHARON_P2P_EXTERNAL_HOSTNAME=
+
+# Loki log aggregation server addresses. Disable loki log aggregation by setting an empty address.
+#CHARON_LOKI_ADDRESSES=
+
+# Docker network of running charon node. See `docker network ls`.
+#CHARON_DOCKER_NETWORK=
+
+# Charon host exposed ports
+#CHARON_PORT_P2P_TCP=
+
+######### MEV-Boost Config #########
+
+# MEV-Boost docker container image version, e.g. `latest` or `1.6`.
+# Note that mev-boost tag 1.6.1a3 supports the holesky network.
+#MEVBOOST_VERSION=
+
+# Comma separated list of MEV-Boost relays.
+# You can choose public relays from https://enchanted-direction-844.notion.site/6d369eb33f664487800b0dedfe32171e?v=d255247c822c409f99c498aeb6a4e51d.
+MEVBOOST_RELAYS=https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@boost-relay-holesky.flashbots.net,https://0xaa58208899c6105603b74396734a6263cc7d947f444f396a90f7b7d3e65d102aec7e5e5291b27e08d02c50a050825c2f@holesky.titanrelay.xyz,https://0xb1559beef7b5ba3127485bbbb090362d9f497ba64e177ee2c8e7db74746306efad687f2cf8574e38d70067d40ef136dc@relay-stag.ultrasound.money,https://0xab78bf8c781c58078c3beb5710c57940874dd96aef2835e7742c866b4c7c0406754376c2c8285a36c630346aa5c5f833@holesky.aestus.live
+
+
+######### Monitoring Config #########
+
+# Grafana docker container image version, e.g. `latest` or `9.4.3`.
+# See available tags https://github.com/grafana/grafana/releases.
+#GRAFANA_VERSION=
+
+# Grafana host exposed port
+#MONITORING_PORT_GRAFANA=
+
+# Prometheus docker container image version, e.g. `latest` or `v2.42.0`.
+# See available tags https://github.com/prometheus/prometheus/releases.
+#PROMETHEUS_VERSION=
+
+######### Voluntary Exit Config #########
+
+# This applies to compose-voluntary-exit.yml only
+
+# Cluster wide consistent exit epoch. Set to latest for fork version, see `curl $BEACON_NODE/eth/v1/config/fork_schedule`
+#EXIT_EPOCH=
+
+######### Debug Config #########
+
+# This applies to compose-debug.yml only
+
+# Prometheus Node exporter docker container image version, e.g. `latest` or `1.5.0`.
+# See available tags https://hub.docker.com/r/bitnami/node-exporter/tags.
+#NODE_EXPORTER_VERSION=
+
+# Jaeger docker container image version, e.g. `latest` or `1.42.0`.
+# See available tags https://hub.docker.com/r/jaegertracing/all-in-one/tags.
+#JAEGER_VERSION=
+
+# Jaeger host exposed port for HTTP query.
+#MONITORING_PORT_JAEGER=
+
+# Grafana Loki docker container image version, e.g. `latest` or `2.8.2`.
+# See available tags https://hub.docker.com/r/grafana/loki/tags.
+#LOKI_VERSION=
+
+# Loki host exposed port
+#MONITORING_PORT_LOKI=
+```
+Use crtl+o to save then ctrl+x to exit.
 
 To run our validator node, we must first run and fully sync and Execution layer client and consensus layer client. By default Charon is set to sync execution layer client (geth) and a consensus layer client (lighthouse).
 
