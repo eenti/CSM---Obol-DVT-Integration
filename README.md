@@ -126,7 +126,7 @@ sudo ufw status
 
 ### Port Forwarding
 
-For a local setup, you may need to port forward these ports for your device's local IP. The exact process depends on your internet provider and router model. Typically, this can be done by logging into your router's settings.
+For a local setup, you may need to port forward these ports for your device's local IP. The exact process depends on your internet provider and router model. Typically, this can be done by logging into your router's settings. You will need to do this for Charon port 3610.
 
 
 ---
