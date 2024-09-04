@@ -381,7 +381,7 @@ MEVBOOST_RELAYS=https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678d
 
 To run our validator node, we must first run and fully sync and Execution layer client and consensus layer client. By default Charon is set to sync execution layer client (geth) and a consensus layer client (lighthouse).
 
-from the working folder charon-distributed-validator-cluster
+While still in the the working folder charon-distributed-validator-cluster cp command:
 ```bash
 docker compose up -d
 ```
