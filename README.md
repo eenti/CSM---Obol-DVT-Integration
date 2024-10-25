@@ -185,10 +185,17 @@ docker run --rm -v "$(pwd):/opt/charon" obolnetwork/charon:v1.0.0 create dkg \
   --name="Stakecat Obol Squad 69" \
   --network="holesky" \
   --num-validators=1 \
-  --fee-recipient-addresses="0xE73a3602b99f1f913e72F8bdcBC235e206794Ac8" \
-  --withdrawal-addresses="0xF0179dEC45a37423EAD4FaD5fCb136197872EAd9" \
+  --fee-recipient-addresses="<Lido Execution Layer Rewards Vault>" \
+  --withdrawal-addresses="<Lido Withdrawal Vault>" \
   --operator-enrs="enr:-HW4QOtPBUWiFnLF1hwfxffqK-z3vmjqr8T0CwG5qk87nDFXSpLZhCZYW7jmubmlP2Typ7bgWOLvo_ABU6HDbMfW2bqAgmlkgnY0iXNlY3AyNTZrMaECWbZ5cZrmy-tK5h2r3C81PYCL5fIDf31tXzoarsfye_g,enr:-HW4QCBfh8UjiE81YcMk08cmlVdzcTwjKYyqnd8aEH8Bdco_JLRc9TJ0ygQBXKOXxw2ZRkT_Szt9aPz8VmPsIdmVrl2AgmlkgnY0iXNlY3AyNTZrMaED5XC-fmRe5k1HgyGttcTY4o7lJdHDrrheS3WsFwuLI-o,enr:-HW4QHyV1ce3zU6VIb7ETaPbob8hgRw8MIOnLf1Jryduz-psNUYeyYgP7PLKROIrI9CEODzSrIxB_ZzHYju0cBi-OdmAgmlkgnY0iXNlY3AyNTZrMaECKHwo9TrxI1-rSOxv7zq7eKGfg-ZSSgDOHjtvFvlf0dc,enr:-HW4QK1Xa3cfimvCftOAuhWPP8oGfj0WGDXbNG7diX-awInDPhoPN6D-nNzzaUzWlHXr1O6Net7gdEWNHBUR9lpMD0iAgmlkgnY0iXNlY3AyNTZrMaECz6weeL4PxNQimYkEyNYqu2RTbEGc8JteY3QrugGMV5A"
 ```
+> Change <Lido Execution Layer Rewards Vault> for the correspondent address:
+Mainnet: `0x388C818CA8B9251b393131C08a736A67ccB19297`
+Holesky: `0xE73a3602b99f1f913e72F8bdcBC235e206794Ac8`
+
+> Change <Lido Withdrawal Vault> for the correspondent address:
+Mainnet: `0xB9D7934878B5FB9610B3fE8A5e441e8fad7E293f`
+Holeksy: `0xF0179dEC45a37423EAD4FaD5fCb136197872EAd9`
 
 This command should output a file at `.charon/cluster-definition.json`. This file needs to be shared with the other operators in the cluster.
 
@@ -332,8 +339,8 @@ BUILDER_API_ENABLED=true
 #MEVBOOST_VERSION=
 
 # Comma separated list of MEV-Boost relays.
-# You can choose public relays from https://enchanted-direction-844.notion.site/6d369eb33f664487800b0dedfe32171e?v=d255247c822c409f99c498aeb6a4e51d.
-MEVBOOST_RELAYS=https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678dab0670c1de38da0c4e9138c9290a398ecd9a0b3110@boost-relay-holesky.flashbots.net,https://0xaa58208899c6105603b74396734a6263cc7d947f444f396a90f7b7d3e65d102aec7e5e5291b27e08d02c50a050825c2f@holesky.titanrelay.xyz,https://0xb1559beef7b5ba3127485bbbb090362d9f497ba64e177ee2c8e7db74746306efad687f2cf8574e38d70067d40ef136dc@relay-stag.ultrasound.money,https://0xab78bf8c781c58078c3beb5710c57940874dd96aef2835e7742c866b4c7c0406754376c2c8285a36c630346aa5c5f833@holesky.aestus.live
+# Please select relays from the vetted relay list from the correspondent network: https://enchanted-direction-844.notion.site/6d369eb33f664487800b0dedfe32171e?v=d255247c822c409f99c498aeb6a4e51d
+MEVBOOST_RELAYS=
 
 ######### Monitoring Config #########
 
@@ -379,6 +386,8 @@ MEVBOOST_RELAYS=https://0xafa4c6985aa049fb79dd37010438cfebeb0f2bd42b115b89dd678d
 ```
 > Use `crtl+o` to save the .env then `ctrl+x` to exit the .env file.
 
+> **Note:** Make sure to select relays from [the vetted relay list](https://enchanted-direction-844.notion.site/6d369eb33f664487800b0dedfe32171e?v=d255247c822c409f99c498aeb6a4e51d) from the correspondent network for the `MEVBOOST_RELAYS=` variable.   
+    
 To run our validator node, we must first run and fully sync and Execution layer client and consensus layer client. By default Charon is set to sync execution layer client (geth) and a consensus layer client (lighthouse).
 
 While still in the the working folder charon-distributed-validator-cluster cp command:
@@ -389,8 +398,9 @@ docker compose up -d
 
 The next step should be taken by the cluster leader.
 
-1. Go to [https://csm.testnet.fi/](https://csm.testnet.fi/)
-2. Select **Become a Node Operator** and then **Create a Node Operator**.
+1. Go to https://csm.lido.fi/?mode=extended (Mainnet) https://csm.testnet.fi/?mode=extended (Holesky)
+2. Select **Become a Node Operator** and input the `Reward` and `Manager` addresses.
+>**Note:** If you're using a splitter contract as the reward please use the extended mode to have the Manager address the control of the operator since splitter contracts can't sign arbitrary messages (required to claim rewards or change NO permissions).
 3. On the CSM Widget, upload your deposit data file and select the corresponding bond type (ETH, stETH, wstETH), and provide the desired bond amount.
 4. You will then need to save your `deposit.json` to your local machine to drag and drop, or alternatively, use the following command and copy and paste the output into the ‘Upload Deposit Data’ box on the CSM front end:
 
@@ -403,5 +413,3 @@ The next step should be taken by the cluster leader.
 Now you just need to wait for the Lido CSM to deposit your validator keys (using your deposit data file). Give some time for the keys to be deposited, and then you will be able to click the Beaconchain link to view your validator.
 
 🎉Congratulations, you are now running a CSM Obol DVT Validator.🎉
-
-
